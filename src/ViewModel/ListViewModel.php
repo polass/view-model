@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\ViewModels;
+namespace Polass\ViewModel;
 
 use Illuminate\Support\Collection;
-use App\Http\ViewModels\ViewModel;
+use Polass\ViewModel\ViewModel;
 
 class ListViewModel extends ViewModel
 {
