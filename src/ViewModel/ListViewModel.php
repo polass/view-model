@@ -36,6 +36,8 @@ class ListViewModel extends ViewModel
      */
     public function toArray()
     {
-        return $this->toCollection()->get('items');
+        return $this->get('items')->map(function($item) {
+            return $item->toArray();
+        });
     }
 }
