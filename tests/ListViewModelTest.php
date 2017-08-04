@@ -17,7 +17,7 @@ class ListViewModelTest extends TestCase
         $inner = new Stubs\ExtendedViewModel;
 
         $this->assertEquals(
-            [ $inner->toArrayAnswer ], $viewModel->toArray()->all()
+            [ $inner->toArrayAnswer ], $viewModel->toArray()
         );
     }
 }
