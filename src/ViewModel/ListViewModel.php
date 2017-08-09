@@ -30,14 +30,14 @@ class ListViewModel extends ViewModel
     }
 
     /**
-     * 配列に変換
+     * 属性の値を全て取得
      *
      * @return array
      */
-    public function toArray()
+    public function getAttributes()
     {
         return $this->get('items')->map(function($item) {
             return $item->toArray();
-        })->all();
+        });
     }
 }
