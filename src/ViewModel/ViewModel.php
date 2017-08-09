@@ -89,17 +89,6 @@ class ViewModel extends Model
     }
 
     /**
-     * 属性をスカラ型に変換
-     *
-     * @param mixed $attribute
-     * @return mixed
-     */
-    protected function mutateAttribute($attribute)
-    {
-        return (new Mutator($attribute))->mutate();
-    }
-
-    /**
      * Serialize した属性を配列で取得
      *
      * @return array
