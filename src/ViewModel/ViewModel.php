@@ -50,7 +50,7 @@ class ViewModel extends Model
      */
     protected function getAttributeFromArray($key)
     {
-        if ($this->has($key)) {
+        if ($this->map()->has($key)) {
             return Arr::get($this->attributes, $this->map()->get($key));
         }
         else {
