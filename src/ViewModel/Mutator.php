@@ -86,7 +86,11 @@ class Mutator
      */
     public function mutate($value)
     {
-        return call_user_func([ $this, $this->getMutator($value) ], $value);
+        if (method_exists($this->invoker, $mutator = $this->getMutator($value))) {
+            return call_user_func([ $this->invoker, $mutator ], $value);
+        }
+
+        return call_user_func([ $this, $mutator ], $value);
     }
 
     /**
