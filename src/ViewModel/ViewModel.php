@@ -95,7 +95,7 @@ class ViewModel extends Model
      */
     public function getMutatedAttributes()
     {
-        return (new Mutator($this->getAttributes()))->mutate();
+        return (new Mutator($this))->mutate($this->getAttributes());
     }
 
     /**

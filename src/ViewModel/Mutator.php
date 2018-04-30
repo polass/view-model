@@ -10,11 +10,11 @@ use Polass\Enum\Enum;
 class Mutator
 {
     /**
-     * 変換対象の値
+     * 呼び出し元
      *
      * @var mixed
      */
-    protected $value;
+    protected $invoker;
 
     /**
      * 不明な型
@@ -26,11 +26,11 @@ class Mutator
     /**
      * 変換したい値を含む Mutator インスタンスを作成
      *
-     * @param mixed $value
+     * @param  mixed  $invoker
      */
-    public function __construct($value)
+    public function __construct($invoker = null)
     {
-        $this->value = $value;
+        $this->invoker = $invoker;
     }
 
     /**
@@ -54,12 +54,13 @@ class Mutator
     /**
      * 変換対象の値の種類を取得
      *
+     * @param  mixed  $value
      * @return string
      */
-    public function getType()
+    public function getType($value)
     {
         foreach ($this->getTypeCheckers() as $type => $checker) {
-            if (call_user_func([ $this, $checker ], $this->value)) {
+            if (call_user_func([ $this, $checker ], $value)) {
                 return $type;
             }
         }
@@ -70,12 +71,12 @@ class Mutator
     /**
      * 配列かスカラ型に変換するメソッドの名前を取得
      *
-     * @param string $type
+     * @param  mixed  $value
      * @return string
      */
-    protected function getMutator()
+    protected function getMutator($value)
     {
-        return 'mutate'.Str::studly($this->getType($this->value));
+        return 'mutate'.Str::studly($this->getType($value));
     }
 
     /**
@@ -83,9 +84,9 @@ class Mutator
      *
      * @return mixed
      */
-    public function mutate()
+    public function mutate($value)
     {
-        return call_user_func([ $this, $this->getMutator() ], $this->value);
+        return call_user_func([ $this, $this->getMutator($value) ], $value);
     }
 
     /**
@@ -154,7 +155,7 @@ class Mutator
         $mutated = [];
 
         foreach ($values as $key => $value) {
-            $mutated[$key] = (new static($value))->mutate();
+            $mutated[$key] = $this->mutate($value);
         }
 
         return $mutated;

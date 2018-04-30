@@ -27,19 +27,19 @@ class MutetorTest extends TestCase
     public function testGetType()
     {
         $this->assertEquals(
-            'Enum', (new Mutator($this->enum))->getType()
+            'Enum', (new Mutator)->getType($this->enum)
         );
 
         $this->assertEquals(
-            'DateTime', (new Mutator($this->date))->getType()
+            'DateTime', (new Mutator)->getType($this->date)
         );
 
         $this->assertEquals(
-            'Array', (new Mutator([ 'inner' ]))->getType()
+            'Array', (new Mutator)->getType([ 'inner' ])
         );
 
         $this->assertEquals(
-            'Arrayable', (new Mutator(collect([ 'inner' ])))->getType()
+            'Arrayable', (new Mutator)->getType(collect([ 'inner' ]))
         );
     }
 
@@ -50,27 +50,27 @@ class MutetorTest extends TestCase
     public function testMutate()
     {
         $this->assertEquals(
-            $this->enum->value, (new Mutator($this->enum))->mutate()
+            $this->enum->value, (new Mutator)->mutate($this->enum)
         );
 
         $this->assertEquals(
-            $this->date->format(DateTime::W3C), (new Mutator($this->date))->mutate()
+            $this->date->format(DateTime::W3C), (new Mutator)->mutate($this->date)
         );
 
         $this->assertEquals(
-            [ 'inner' ], (new Mutator([ 'inner' ]))->mutate()
+            [ 'inner' ], (new Mutator)->mutate([ 'inner' ])
         );
 
         $this->assertEquals(
-            [ $this->enum->value ], (new Mutator([ $this->enum ]))->mutate()
+            [ $this->enum->value ], (new Mutator)->mutate([ $this->enum ])
         );
 
         $this->assertEquals(
-            [ 'inner' ], (new Mutator(collect([ 'inner' ])))->mutate()
+            [ 'inner' ], (new Mutator)->mutate(collect([ 'inner' ]))
         );
 
         $this->assertEquals(
-            [ $this->enum->value ], (new Mutator(collect([ $this->enum ])))->mutate()
+            [ $this->enum->value ], (new Mutator)->mutate(collect([ $this->enum ]))
         );
     }
 }
