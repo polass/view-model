@@ -92,7 +92,7 @@ class Mutator
     /**
      * DateTime 型かどうか
      *
-     * @param mixed $value
+     * @param  mixed  $value
      * @return bool
      */
     protected function isDateTimeValue($value)
@@ -103,7 +103,7 @@ class Mutator
     /**
      * DateTime 型の値を W3C 形式の文字列に変換
      *
-     * @param \DateTime $value
+     * @param  \DateTime  $value
      * @return string
      */
     protected function mutateDateTime(DateTime $value)
@@ -114,7 +114,7 @@ class Mutator
     /**
      * Enum 型かどうか
      *
-     * @param \Polass\Enum\Enum $value
+     * @param  \Polass\Enum\Enum  $value
      * @return bool
      */
     protected function isEnumValue($value)
@@ -125,7 +125,7 @@ class Mutator
     /**
      * Enum インスタンスの値を取得
      *
-     * @param \Polass\Enum\Enum $value
+     * @param  \Polass\Enum\Enum $value
      * @return mixed
      */
     protected function mutateEnum(Enum $value)
@@ -136,7 +136,7 @@ class Mutator
     /**
      * 配列かどうか
      *
-     * @param mixed $value
+     * @param  mixed  $value
      * @return bool
      */
     protected function isArrayValue($value)
@@ -147,7 +147,7 @@ class Mutator
     /**
      * 配列の中身を変換
      *
-     * @param array $value
+     * @param  array  $value
      * @return array
      */
     protected function mutateArray(array $values)
@@ -164,7 +164,7 @@ class Mutator
     /**
      * Arrayable 型かどうか
      *
-     * @param mixed $value
+     * @param  mixed  $value
      * @return bool
      */
     protected function isArrayableValue($value)
@@ -175,7 +175,7 @@ class Mutator
     /**
      * Arrayable 型を配列に変換
      *
-     * @param Collection $value
+     * @param  \Illuminate\Contracts\Support\Arrayable  $value
      * @return array
      */
     protected function mutateArrayable(Arrayable $values)
@@ -186,7 +186,7 @@ class Mutator
     /**
      * 型が不明な場合はそのまま
      *
-     * @param mixed $value
+     * @param  mixed  $value
      * @return mixed
      */
     protected function mutateUnknown($value)
