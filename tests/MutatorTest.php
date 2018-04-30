@@ -73,4 +73,15 @@ class MutetorTest extends TestCase
             [ $this->enum->value ], (new Mutator)->mutate(collect([ $this->enum ]))
         );
     }
+
+    /**
+     * `mutate()` の呼び出し元に変換器がある場合のテスト
+     *
+     */
+    public function testMutateWithInvoker()
+    {
+        $this->assertEquals(
+            'successful', (new Mutator(new Stubs\ViewModelWithMutatorMethod))->mutate($this->enum)
+        );
+    }
 }
